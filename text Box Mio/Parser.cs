@@ -55,7 +55,6 @@ namespace at.jku.ssw.cc
         }
 
     }
-
     class Parser
     {
         public static FrmContinuar mens = new FrmContinuar();
