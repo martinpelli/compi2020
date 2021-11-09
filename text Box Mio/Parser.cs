@@ -685,6 +685,8 @@ namespace at.jku.ssw.cc
                     Check(Token.RPAR);
                     Code.seleccLaProdEnLaGram(8);
                     pars.Nodes.Add(".");
+                    methodDecl.ExpandAll();
+                    MessageBoxCon3Preg();
                     pars.ExpandAll();
                     methodDecl.Nodes.Add("')'");
                     MessageBoxCon3Preg();
@@ -1311,24 +1313,28 @@ namespace at.jku.ssw.cc
         /// Y todos los nombres y padre en Block.
         static void Block(System.Windows.Forms.TreeNode methodDecl)
         {
+            
             System.Windows.Forms.TreeNode block = new System.Windows.Forms.TreeNode("Block");
             Code.seleccLaProdEnLaGram(16);
+            MessageBoxCon3Preg();
             methodDecl.Nodes.Add(block);
             methodDecl.ExpandAll();
             MessageBoxCon3Preg();
             Code.Colorear("token");
             ////// Agrega '{' al arbol
             Check(Token.LBRACE);
+            MessageBoxCon3Preg();
             block.Nodes.Add("'{'");
             block.ExpandAll();
             MessageBoxCon3Preg(methodDecl);
             Code.Colorear("token");
             /////// Agrega 'StatementsOpc' al arbol
+            Code.seleccLaProdEnLaGram(17);
+            MessageBoxCon3Preg();
             System.Windows.Forms.TreeNode statementsopc = new System.Windows.Forms.TreeNode("StatementsOpc");
             block.Nodes.Add(statementsopc);
             block.ExpandAll();
             MessageBoxCon3Preg(block);
-            Code.seleccLaProdEnLaGram(17);
             Code.Colorear("token");
             /////// Agrega '.' al arbol si el block esta vacio
             if (la == Token.RBRACE)
@@ -1343,22 +1349,23 @@ namespace at.jku.ssw.cc
             {
                 if(la == Token.IDENT)
                 {
-                    System.Windows.Forms.TreeNode posDeclars = new System.Windows.Forms.TreeNode("PosDeclars");
-                    block.Nodes.Add(posDeclars);
-                    MessageBoxCon3Preg();
+                    
+                    Code.Colorear("latoken");
                     Code.seleccLaProdEnLaGram(1);
                     MessageBoxCon3Preg();
-                    //bool encuentraDecl = false;
+                    System.Windows.Forms.TreeNode posDeclars = new System.Windows.Forms.TreeNode("PosDeclars");
+                    statementsopc.Nodes.Add(posDeclars);
+                    statementsopc.ExpandAll();
+                    MessageBoxCon3Preg();
                     Code.CreateMetadata(curMethod);  //genera il
-                    //Declaraciones  por ahora solo decl de var, luego habria q agregar const y clases
-                    //encuentraDecl = true;
-                    Code.Colorear("latoken"); //colorea "int"  en int i; 
-                    //Infiere la 2° opcion de PosDeclars   aaaaaaaa
+                    MessageBoxCon3Preg();
+                    Code.Colorear("token"); 
                     System.Windows.Forms.TreeNode declaration = new System.Windows.Forms.TreeNode("Declaration");
                     posDeclars.Nodes.Add(declaration);
                     posDeclars.ExpandAll();
                     MessageBoxCon3Preg();
                     Code.seleccLaProdEnLaGram(2);
+                    MessageBoxCon3Preg();
                     System.Windows.Forms.TreeNode varDecl = new System.Windows.Forms.TreeNode("VarDecl");
                     declaration.Nodes.Add(varDecl);
                     declaration.ExpandAll();
