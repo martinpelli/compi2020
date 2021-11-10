@@ -1390,8 +1390,8 @@ namespace at.jku.ssw.cc
                     
 
                     System.Windows.Forms.TreeNode statementsopc2 = new System.Windows.Forms.TreeNode("StatementsOpc");
-                    block.Nodes.Add(statementsopc2);
-                    block.ExpandAll();
+                    statementsopc.Nodes.Add(statementsopc2);
+                    
                     MessageBoxCon3Preg(block);
                     Code.seleccLaProdEnLaGram(17);
                     if ((la == Token.IDENT || la == Token.IF || la == Token.WHILE || la == Token.BREAK
@@ -1400,8 +1400,9 @@ namespace at.jku.ssw.cc
                     {
                         Code.Colorear("latoken");
                         System.Windows.Forms.TreeNode statement = new System.Windows.Forms.TreeNode("Statement");
-                        statementsopc.Nodes.Add(statement);
+                        statementsopc2.Nodes.Add(statement);
                         statementsopc.ExpandAll();
+                        statement.ExpandAll();
                         MessageBoxCon3Preg(statement);
                         Code.seleccLaProdEnLaGram(18);
                         if (ZZ.ParserStatem)
